@@ -6,7 +6,7 @@ Parse through the contents of a file generated with this command:
 Output a list of outages based on ping timeouts. Give start and end timestamps,
 plus total time offline.
 
-Reads in the whole file, so make sure it's not too enormous.
+Note: Reads in the whole file, so make sure it's not too big.
 '''
 from __future__ import absolute_import
 from __future__ import print_function
