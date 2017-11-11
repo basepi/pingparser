@@ -53,8 +53,10 @@ def parse():
             uptime = uptime % 60
             hours = mins // 60
             mins = mins % 60
-            print('Down for {0} seconds at {1} after {2:02d}:{3:02d}:{4:02d} uptime'
-                  .format(count, downtime, hours, mins, uptime))
+            dmins = count // 60
+            dsecs = count % 60
+            print('Down for {0:02d}:{1:02d} at {2} after {3:02d}:{4:02d}:{5:02d} uptime'
+                  .format(dmins, dsecs, downtime, hours, mins, uptime))
             uptime = 0
             skipto = i + count
         else:
@@ -68,6 +70,13 @@ def parse():
         hours = mins // 60
         mins = mins % 60
         print('Ended with {0:02d}:{1:02d}:{2:02d} uptime.'.format(hours, mins, uptime))
+        mins = i // 60
+        i = i % 60
+        hours = mins // 60
+        mins = mins % 60
+        days = hours // 24
+        hours = hours % 24
+        print('Total time: {0:02d}:{1:02d}:{2:02d}:{3:02d}'.format(days, hours, mins, i))
 
 
 if __name__ == '__main__':
