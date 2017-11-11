@@ -49,7 +49,12 @@ def parse():
                     count += 1
                     continue
                 break
-            print('Down for {0} seconds at {1} after {2} seconds of uptime'.format(count, downtime, uptime))
+            mins = uptime // 60
+            uptime = uptime % 60
+            hours = mins // 60
+            mins = mins % 60
+            print('Down for {0} seconds at {1} after {2:02d}:{3:02d}:{4:02d} uptime'
+                  .format(count, downtime, hours, mins, uptime))
             uptime = 0
             skipto = i + count
         else:
