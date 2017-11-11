@@ -63,7 +63,11 @@ def parse():
     if uptime - 1 == i:
         print('No outages detected over {0} seconds!'.format(uptime))
     else:
-        print('Ended with {0} seconds of uptime.'.format(uptime))
+        mins = uptime // 60
+        uptime = uptime % 60
+        hours = mins // 60
+        mins = mins % 60
+        print('Ended with {0:02d}:{1:02d}:{2:02d} uptime.'.format(hours, mins, uptime))
 
 
 if __name__ == '__main__':
