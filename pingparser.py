@@ -63,7 +63,13 @@ def parse():
             # Good packet, increment uptime
             uptime += 1
     if uptime - 1 == i:
-        print('No outages detected over {0} seconds!'.format(uptime))
+        mins = i // 60
+        i = i % 60
+        hours = mins // 60
+        mins = mins % 60
+        days = hours // 24
+        hours = hours % 24
+        print('No outages over {0:02d}:{1:02d}:{2:02d}:{3:02d}'.format(days, hours, mins, i))
     else:
         mins = uptime // 60
         uptime = uptime % 60
