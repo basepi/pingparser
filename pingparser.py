@@ -7,6 +7,15 @@ Output a list of outages based on ping timeouts. Give start and end timestamps,
 plus total time offline.
 
 Note: Reads in the whole file, so make sure it's not too big.
+
+You can also pass in a number after the filename, and the script will ignore
+downtime if it's fewer than that number of packets.
+
+For example:
+
+    python3 pingparser.py ~/monitor.txt 2
+
+The above command will only show downtime if it's at least two packets long.
 '''
 from __future__ import absolute_import
 from __future__ import print_function
