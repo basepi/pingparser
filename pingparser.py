@@ -28,6 +28,10 @@ def parse():
     with open(str(sys.argv[1]), 'r') as f:
         lines = f.readlines()
 
+    down_threshold = 1
+    if len(sys.argv) > 2:
+        down_threshold = int(sys.argv[2])
+
     # Remove the first line, which is not an actual result
     lines = lines[1:]
 
@@ -49,16 +53,19 @@ def parse():
                     count += 1
                     continue
                 break
-            mins = uptime // 60
-            uptime = uptime % 60
-            hours = mins // 60
-            mins = mins % 60
-            dmins = count // 60
-            dsecs = count % 60
-            print('Down for {0:02d}:{1:02d} at {2} after {3:02d}:{4:02d}:{5:02d} uptime'
-                  .format(dmins, dsecs, downtime, hours, mins, uptime))
-            uptime = 0
-            skipto = i + count
+            if count < down_threshold:
+                uptime += 1
+            else:
+                mins = uptime // 60
+                uptime = uptime % 60
+                hours = mins // 60
+                mins = mins % 60
+                dmins = count // 60
+                dsecs = count % 60
+                print('Down for {0:02d}:{1:02d} at {2} after {3:02d}:{4:02d}:{5:02d} uptime'
+                      .format(dmins, dsecs, downtime, hours, mins, uptime))
+                uptime = 0
+                skipto = i + count
         else:
             # Good packet, increment uptime
             uptime += 1
