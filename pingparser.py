@@ -91,7 +91,9 @@ def parse():
         uptime = uptime % 60
         hours = mins // 60
         mins = mins % 60
-        print('Ended with {0:02d}:{1:02d}:{2:02d} uptime.'.format(hours, mins, uptime))
+        days = hours // 24
+        hours = hours % 24
+        print('Ended with {0:02d}:{1:02d}:{2:02d}:{3:02d} uptime.'.format(days, hours, mins, uptime))
         mins = i // 60
         i = i % 60
         hours = mins // 60
